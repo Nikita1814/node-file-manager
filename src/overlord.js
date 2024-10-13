@@ -1,6 +1,8 @@
 
 import process from 'node:process';
 import { logPath, moveUp, seedee } from "./general/navigation.js";
+import { listFiles } from './general/list.js';
+
 
 // utils (Todo move to separate files)
 const parseArgs = () => {
@@ -39,6 +41,8 @@ const overlord = async () => {
         } else if (command === 'cd') {
             const pathToNavigateTo = splitData[1];
             seedee(pathToNavigateTo);
+        } else if (command === "ls") {
+            listFiles();
         }
 
     })
@@ -53,17 +57,3 @@ overlord();
 
 
 
-// const listFiles = async function(path) {
-     
-//         await readdir(path, (err, files) => {
-//             if (err) {
-//                 console.log(err)
-//             }
-
-//             const tableArr = []
-
-//             if (files) {
-     
-//             }
-//         })
-//     }
