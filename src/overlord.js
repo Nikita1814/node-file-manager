@@ -2,6 +2,7 @@
 import process from 'node:process';
 import { logPath, moveUp, seedee } from "./general/navigation.js";
 import { listFiles } from './general/list.js';
+import { osExecutor } from './os-scripts/osExecutor.js';
 
 
 // utils (Todo move to separate files)
@@ -36,6 +37,11 @@ const overlord = async () => {
      process.stdin.on('data' , (line) => {
         const splitData = line.toString().trim().split(/\s+/g)
         const command = splitData[0]
+        const args = splitData.filter(arg => {
+            const testRegex = /^--.*$/
+            return testRegex.test(arg)
+        })
+
         if (command === 'up') {
             moveUp();
         } else if (command === 'cd') {
@@ -43,6 +49,10 @@ const overlord = async () => {
             seedee(pathToNavigateTo);
         } else if (command === "ls") {
             listFiles();
+        } else if (command === "os") {
+            args.forEach(arg => {
+                osExecutor(arg);
+            })
         }
 
     })
