@@ -4,6 +4,7 @@ import { logPath, moveUp, seedee } from "./general/navigation.js";
 import { listFiles } from './general/list.js';
 import { osExecutor } from './os-scripts/osExecutor.js';
 import { seeaytee } from './fs-scripts/cat.js';
+import { aydeedee } from './fs-scripts/add.js';
 
 
 // utils (Todo move to separate files)
@@ -20,7 +21,6 @@ const parseArgs = () => {
     })
     return propsToDisplay
 };
-
 
 const overlord = async () => {
     console.log('I live!')
@@ -57,8 +57,10 @@ const overlord = async () => {
         } else if (command === "cat") {
             const pathToRead = splitData[1];
             await seeaytee(pathToRead)
+        } else if (command === "add") {
+            const pathToRead = splitData[1];
+            await aydeedee(pathToRead)
         }
-
     })
 
     // process.stdin.on('SIGINT' , (data) => {
