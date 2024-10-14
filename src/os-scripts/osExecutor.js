@@ -5,7 +5,6 @@ import { getHomeDir } from "./getHomeDir.js";
 import { getUserName } from "./getUserName.js";
 
 export function osExecutor(arg) {
-    console.log("triggered for", arg)
     switch (arg) {
         case "--EOL":
         getEol();
@@ -22,6 +21,5 @@ export function osExecutor(arg) {
         case "--architecture":
         getArchitecture();
         break;
-
     }
 }

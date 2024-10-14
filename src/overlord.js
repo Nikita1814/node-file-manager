@@ -3,6 +3,7 @@ import process from 'node:process';
 import { logPath, moveUp, seedee } from "./general/navigation.js";
 import { listFiles } from './general/list.js';
 import { osExecutor } from './os-scripts/osExecutor.js';
+import { seeaytee } from './fs-scripts/cat.js';
 
 
 // utils (Todo move to separate files)
@@ -34,7 +35,7 @@ const overlord = async () => {
         console.log(logPath())
     };
 
-     process.stdin.on('data' , (line) => {
+     process.stdin.on('data' , async (line) => {
         const splitData = line.toString().trim().split(/\s+/g)
         const command = splitData[0]
         const args = splitData.filter(arg => {
@@ -53,6 +54,9 @@ const overlord = async () => {
             args.forEach(arg => {
                 osExecutor(arg);
             })
+        } else if (command === "cat") {
+            const pathToRead = splitData[1];
+            await seeaytee(pathToRead)
         }
 
     })
