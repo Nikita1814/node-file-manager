@@ -5,6 +5,8 @@ import { listFiles } from './general/list.js';
 import { osExecutor } from './os-scripts/osExecutor.js';
 import { seeaytee } from './fs-scripts/cat.js';
 import { aydeedee } from './fs-scripts/add.js';
+import { aren } from './fs-scripts/rn.js';
+import { arem } from './fs-scripts/rm.js';
 
 
 // utils (Todo move to separate files)
@@ -60,6 +62,13 @@ const overlord = async () => {
         } else if (command === "add") {
             const pathToRead = splitData[1];
             await aydeedee(pathToRead)
+        } else if( command === "rn") {
+            const oldPath = splitData[1];
+            const newPath = splitData[2];
+            await aren(oldPath, newPath)
+        } else if (command = "rm") {
+            const pathToRemove = splitData[1];
+            await arem(pathToRemove)
         }
     })
 
