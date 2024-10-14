@@ -8,6 +8,7 @@ import { aydeedee } from './fs-scripts/add.js';
 import { aren } from './fs-scripts/rn.js';
 import { arem } from './fs-scripts/rm.js';
 import { seepee } from './fs-scripts/cp.js';
+import { emmvee } from './fs-scripts/mv.js';
 import { hash } from './fs-scripts/hash.js';
 import { zip } from './zlib-scripts/zip.js';
 import { cwd, chdir } from 'process'
@@ -32,14 +33,11 @@ const parseArgs = () => {
 const overlord = async () => {
     const initialLaunchData = parseArgs();
     chdir(homedir())
-    console.log(`You are currently in ${cwd()}`);
-
     let userName = "";
 
     if (initialLaunchData["--username"]) {
         userName = initialLaunchData["--username"]
         console.log(`Welcome to the file manager, ${userName}!`)
-        console.log(logPath())
     };
 
     process.on('SIGINT' , (data) => {
@@ -86,7 +84,7 @@ const overlord = async () => {
         } else if (command === "mv") {
             const oldPath = splitData[1];
             const newPath = splitData[2];
-            await emvee(oldPath, newPath);
+            await emmvee(oldPath, newPath);
         } else if (command === "hash") {
             const path = splitData[1];
             await hash(path);
@@ -101,6 +99,8 @@ const overlord = async () => {
         } else if (command === ".exit") {
             console.log(`Thank you for using File Manager, ${userName} , goodbye!`);
             process.exit();
+        } else {
+            console.log('Unknown Command');
         }
     })
 
