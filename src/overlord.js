@@ -7,6 +7,7 @@ import { seeaytee } from './fs-scripts/cat.js';
 import { aydeedee } from './fs-scripts/add.js';
 import { aren } from './fs-scripts/rn.js';
 import { arem } from './fs-scripts/rm.js';
+import { seepee } from './fs-scripts/cp.js';
 
 
 // utils (Todo move to separate files)
@@ -66,9 +67,17 @@ const overlord = async () => {
             const oldPath = splitData[1];
             const newPath = splitData[2];
             await aren(oldPath, newPath)
-        } else if (command = "rm") {
+        } else if (command === "rm") {
             const pathToRemove = splitData[1];
             await arem(pathToRemove)
+        } else if (command === "cp") {
+            const oldPath = splitData[1];
+            const newPath = splitData[2];
+            await seepee(oldPath, newPath)
+        } else if (command === "mv") {
+            const oldPath = splitData[1];
+            const newPath = splitData[2];
+            await emvee(oldPath, newPath);
         }
     })
 

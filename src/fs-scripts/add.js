@@ -20,5 +20,3 @@ export const aydeedee = async (path) => {
         console.log("the path you have provided is incorrect")
     }
 };
-
-await aydeedee();
