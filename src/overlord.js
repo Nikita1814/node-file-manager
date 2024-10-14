@@ -8,6 +8,7 @@ import { aydeedee } from './fs-scripts/add.js';
 import { aren } from './fs-scripts/rn.js';
 import { arem } from './fs-scripts/rm.js';
 import { seepee } from './fs-scripts/cp.js';
+import { hash } from './fs-scripts/hash.js';
 
 
 // utils (Todo move to separate files)
@@ -78,6 +79,9 @@ const overlord = async () => {
             const oldPath = splitData[1];
             const newPath = splitData[2];
             await emvee(oldPath, newPath);
+        } else if (command === "hash") {
+            const path = splitData[1];
+            await hash(path);
         }
     })
 
