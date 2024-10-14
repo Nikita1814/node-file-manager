@@ -15,4 +15,3 @@ export const seeaytee = async (path) => {
     }
 };
 
-await seeaytee();

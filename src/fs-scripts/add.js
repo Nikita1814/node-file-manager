@@ -10,7 +10,7 @@ export const aydeedee = async (path) => {
             pathToCreate, 
             async (err) => {
                 if (err) {
-                    await writeFile(pathToCreate, '', (err) => {})
+                    await writeFile(pathToCreate, '',(err) => {})
                 } else {
                     console.log("A file with that name already existst")
                 }
