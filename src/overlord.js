@@ -10,6 +10,8 @@ import { arem } from './fs-scripts/rm.js';
 import { seepee } from './fs-scripts/cp.js';
 import { hash } from './fs-scripts/hash.js';
 import { zip } from './zlib-scripts/zip.js';
+import { cwd, chdir } from 'process'
+import { homedir } from 'os'
 
 
 // utils (Todo move to separate files)
@@ -28,17 +30,22 @@ const parseArgs = () => {
 };
 
 const overlord = async () => {
-    console.log('I live!')
     const initialLaunchData = parseArgs();
+    chdir(homedir())
+    console.log(`You are currently in ${cwd()}`);
 
     let userName = "";
-    console.log(process.cwd());
 
     if (initialLaunchData["--username"]) {
         userName = initialLaunchData["--username"]
         console.log(`Welcome to the file manager, ${userName}!`)
         console.log(logPath())
     };
+
+    process.on('SIGINT' , (data) => {
+        console.log(`Thank you for using File Manager, ${userName} , goodbye!`);
+        process.exit()
+    })
 
      process.stdin.on('data' , async (line) => {
         const splitData = line.toString().trim().split(/\s+/g)
@@ -91,12 +98,13 @@ const overlord = async () => {
             const oldPath = splitData[1];
             const newPath = splitData[2];
             await zip(oldPath,newPath, "decompress")
+        } else if (command === ".exit") {
+            console.log(`Thank you for using File Manager, ${userName} , goodbye!`);
+            process.exit();
         }
     })
 
-    process.stdin.on('SIGINT' , (data) => {
-        console.log(`Thank you for using File Manager, ${userName} , goodbye!`);
-    })
+   
 };
 
 overlord();
