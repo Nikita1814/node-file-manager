@@ -9,6 +9,7 @@ import { aren } from './fs-scripts/rn.js';
 import { arem } from './fs-scripts/rm.js';
 import { seepee } from './fs-scripts/cp.js';
 import { hash } from './fs-scripts/hash.js';
+import { zip } from './zlib-scripts/zip.js';
 
 
 // utils (Todo move to separate files)
@@ -82,12 +83,20 @@ const overlord = async () => {
         } else if (command === "hash") {
             const path = splitData[1];
             await hash(path);
+        } else if (command === "compress") {
+            const oldPath = splitData[1];
+            const newPath = splitData[2];
+            await zip(oldPath,newPath, "compress")
+        } else if (command === "decompress") {
+            const oldPath = splitData[1];
+            const newPath = splitData[2];
+            await zip(oldPath,newPath, "decompress")
         }
     })
 
-    // process.stdin.on('SIGINT' , (data) => {
-    //     console.log(`Thank you for using File Manager, ${userName} , goodbye!`);
-    // })
+    process.stdin.on('SIGINT' , (data) => {
+        console.log(`Thank you for using File Manager, ${userName} , goodbye!`);
+    })
 };
 
 overlord();
